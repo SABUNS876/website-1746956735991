@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Neon Sign Creator</title>
+ <style>
+ body {
+ font-family: 'Courier New', monospace;
+ background-color: #0f0e17;
+ color: #fffffe;
+ text-align: center;
+ margin: 0;
+ padding: 20px;
+ }
+ .container {
+ max-width: 600px;
+ margin: 0 auto;
+ }
+ h1 {
+ color: #ff8906;
+ text-shadow: 0 0 5px #ff8906;
+ }
+ .neon-text {
+ font-size: 3rem;
+ font-weight: bold;
+ margin: 30px 0;
+ text-shadow: 0 0 10px currentColor;
+ transition: 0.3s;
+ }
+ .controls {
+ background: rgba(255, 255, 255, 0.1);
+ padding: 20px;
+ border-radius: 10px;
+ margin: 20px 0;
+ }
+ input, button {
+ padding: 10px;
+ margin: 5px;
+ border: none;
+ border-radius: 5px;
+ }
+ button {
+ background: #ff8906;
+ color: #0f0e17;
+ cursor: pointer;
+ font-weight: bold;
+ }
+ button:hover {
+ background: #f25f4c;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <h1>✨ Neon Sign Creator ✨</h1>
+ 
+ <div class="controls">
+ <input type="text" id="text-input" placeholder="Type anything..." value="NEON">
+ <input type="color" id="color-picker" value="#ff00ff">
+ <button id="generate-btn">Generate</button>
+ <button id="download-btn">Download PNG</button>
+ </div>
+ 
+ <div class="neon-text" id="neon-display">NEON</div>
+ </div>
+
+ <script>
+ const textInput = document.getElementById('text-input');
+ const colorPicker = document.getElementById('color-picker');
+ const neonDisplay = document.getElementById('neon-display');
+ const generateBtn = document.getElementById('generate-btn');
+ const downloadBtn = document.getElementById('download-btn');
+
+ generateBtn.addEventListener('click', updateNeon);
+ textInput.addEventListener('input', updateNeon);
+ colorPicker.addEventListener('input', updateNeon);
+
+ function updateNeon() {
+ neonDisplay.textContent = textInput.value;
+ neonDisplay.style.color = colorPicker.value;
+ neonDisplay.style.textShadow = `0 0 10px ${colorPicker.value}, 0 0 20px ${colorPicker.value}`;
+ }
+
+ downloadBtn.addEventListener('click', () => {
+ alert("PNG downloaded! (This is a demo—real functionality would use a canvas export)");
+ });
+
+ updateNeon(); // Initialize
+ </script>
+</body>
+</html>
